@@ -44,6 +44,8 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+
+
 // Stripe price IDs (set these up in Stripe Dashboard)
 const PRICE_IDS = {
   individual: process.env.STRIPE_PRICE_INDIVIDUAL, // $197
@@ -499,6 +501,13 @@ app.get('/api/progress/:token', async (req, res) => {
       accessToken: token,
       status: 'active'
     });
+	
+app.post('/api/resend-access-link', async (req, res) => {
+  const { email } = req.body;
+  // Find customer by email
+  // Send them their access link
+  // Return success
+});
 
     if (!customer) {
       return res.status(401).json({ error: 'Invalid access token' });
